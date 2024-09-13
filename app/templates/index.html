@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Radarová animace</title>
+    <style>
+        #animation {
+            max-width: 600px;
+            margin: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<img id="animation" src="" alt="Radarová animace">
+
+<script>
+    const imagePaths = {{ image_paths|tojson }};
+    let currentIndex = 0;
+
+    function updateImage() {
+        const img = document.getElementById('animation');
+        img.src = '/' + imagePaths[currentIndex];
+        currentIndex = (currentIndex + 1) % imagePaths.length;
+    }
+
+    // Spustíme animaci
+    setInterval(updateImage, 800);
+
+    // Načteme první obrázek
+    updateImage();
+
+    // Aktualizujeme stránku každých 5 minut pro získání nových obrázků
+    setTimeout(() => {
+        location.reload();
+    }, 300000); // 5 minut
+</script>
+
+</body>
+</html>
