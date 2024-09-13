@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  radar_app:
+    build: .
+    ports:
+      - "80:5000"
+    volumes:
+      - ./app/static:/app/static
+    restart: unless-stopped
